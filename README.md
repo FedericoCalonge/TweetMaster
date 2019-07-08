@@ -1,9 +1,9 @@
 # PDI-TweetMaster
 >This RESTful API is a college's project, so expect mediocre code and a lot of to-do's.
 >
->Autores: Federico Calonge, Juan David, Gabriel Torrandella
+>Autores: Federico Calonge, Juan David, Gabriel Torrandella.
 >
->Profesor: Juan Lagostena
+>Profesor: Juan Lagostena.
 
 ## Setting Up TweetMaster
 
@@ -20,8 +20,7 @@ pip3 install -r requirements.txt
 
 TweetMaster usa una base de datos MySQL durante sus operaciones. El set-up y creación de la BD es controlada por la app durante la 1ra ejecucion (por esto NO es necesario crear la BD previamente). 
 
-Lo que si se debe hacer es modificar la linea 9 dentro de _DataBaseConnector/configtables.py_ dependiendo del usuario y contraseña de
-su BD en MySQL:
+Lo que si se debe hacer es **modificar** la linea 9 del archivo _configtables.py_ ubicado en la carpeta _DataBaseConnector_ dependiendo de la conexión con la BD en MySQL. En nuestro caso, utilizamos la conexión a nuestra BD en MySQL desde nuestro localhost (en el puerto 3306) mediante el usuario root y la password 4236. De acuerdo a esto, la linea 9 la completamos así:
 ```
 Linea 9 → engine = create_engine("mysql+pymysql://root: 4236@localhost :3306/BDTweetMaster?charset=utf8",echo=True)
 ```
