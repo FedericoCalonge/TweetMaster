@@ -1,12 +1,9 @@
 # PDI-TweetMaster
-
->Thanks taking your time in finding TweetMaster!
->
 >This RESTful API is a college's project, so expect mediocre code and a lot of to-do's.
 >
->Autors: Federico Calonge, Juan David, Gabriel Torrandella
+>Autores: Federico Calonge, Juan David, Gabriel Torrandella
 >
->Professor: Juan Lagostena
+>Profesor: Juan Lagostena
 
 ## Setting Up TweetMaster
 
@@ -14,56 +11,54 @@
 
 Python 3.5.2+
 
-Install the packages in here. The easiest way is using **pip3**:
-
+Instalar los paquetes que hay en el proyecto; la manera más facil es utilizando **pip3**:
 ```
 pip3 install -r requirements.txt
 ```
 
 ### Setting up the database
 
-TweetMaster uses a MySQL database during operations.  
-Fortunately, the necesary set-up is controlled by the app during it's first execution.  
-Worry no more!
+TweetMaster usa una base de datos MySQL durante sus operaciones. El set-up y creación de la BD es controlada por la app durante la 1ra ejecucion (por esto NO es necesario crear la BD previamente). 
+
+Lo que si se debe hacer es modificar la linea 9 dentro de _DataBaseConnector/configtables.py_ dependiendo del usuario y contraseña de
+su BD en MySQL:
+```
+Linea 9 → engine = create_engine("mysql+pymysql://root: 4236@localhost :3306/BDTweetMaster?charset=utf8",echo=True)
+```
 
 ### Setting up the servers
 
-Execute in diferent terminals _start_manager_, _start_fetcher_ and _start_reporter_, from TweetMaster's root directory.  
-The order is indistint.
-
-The servers will live in:  
+Ejecutar en diferentes terminales: _start_manager_, _start_fetcher_ y _start_reporter_, del directorio root de TweetMaster. El órden es indistinto.
+Los servers vivirán en:  
  * Manger:   127.0.0.1/5000
  * Fetcher:  127.0.0.1/5001
  * Reporter: 127.0.0.1/5002
  
 ### Setting up the scheduler
 
-The Scheduler is a small Python module accessed once every 5 minutes.  
-To do that, it is necesary to create a _cron job_ that executes the module every 5 minutes.
+El Scheduler es un pequeño módulo de Python que es accedido cada 5 minutos. Para hacer esto, es necesario crear un _cron job_ que ejecutará el módulo cada 5 minutos. 
 
-To add a _cron job_ first execute **crontab -e**. This will open a text editor.
-Append at the end the following line:
+Para añadir el _cron job_ se debe ejecutar **crontab -e**. Esto abrirá un editor de texto; y se deberá añadir esto al final de las lineas: 
 ```
 */5 * * * * cd {path to TweetMaster root} && PYTHONPATH Scheduler/scheduler.py
 ```
-
-Where:
- * "path to TweetMaster root" is the path from root to the TweetMaster's root directory
+Donde:
+ * "path to TweetMaster root" es el path desde el root al directorio root de TweetMaster. 
    * /dir1/dir2/dir3/TweetMaster
- * PYTHONPATH is the Python 3 interpreter's path
-   * If you are _not_ using a virtual enviroment, replace this with _python3_
-   * If you _are_ using a virtual enviroment, get the path executing **which python3** when working on the enviroment.
+ * "PYTHONPATH" es el path del interprete de Python3.
+   * Si _NO_ estamos usando un entorno virtual, se debe reemplazar esto con _python3_
+   * _SI_ estamos utilizando un entorno virtual, se debe obtener el path ejecutando **which python3** cuando estemos trabajando dentro del entorno virtual. 
 
-### Optional: Setting up the Swagger tool
+### Opcional: Setting up the Swagger tool
 
-There is a Swagger documentation for TweetMaster. It's a server bundled with the app.  
-To run the server, please execute the following from the root directory:
-
+Hay documentación en Swagger para la API TweetMaster.  Es un servidor incluído con la aplicación. 
+Para correr el servidor, se debe ejecutar lo siguiente (desde el directorio root): 
 ```
 python3 -m swagger_server
 ```
-
-and open your browser to here:
-
+Y luego abrir el navegador en...:
 ```
 http://localhost:8080/FedericoCalonge/TweetMaster/1.0.0/ui/
+```
+
+### Para mayor información ver el archivo "Escenarios de prueba API y Mejoras" donde se realizaron pruebas mediante POSTMAN y se especifican las mejoras en la API. 
